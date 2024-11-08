@@ -1,0 +1,40 @@
+﻿@page
+@model logindlm.Pages.termekModel
+@{
+}
+<div id="termekPg">
+    <h2 class="text-center mb-3">Terméklista</h2>
+
+    <!-- Új termék hozzáadása gomb -->
+    <router-link to="/create" class="btn btn-primary mb-3">Új termék</router-link>
+
+    <!-- Terméklista táblázat -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cikkszám</th>
+                <th>Terméknév</th>
+                <th>Leírás</th>
+                <th>Ár</th>
+                <th>Hozzáadott</th>
+                <th>Módosítás</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="termek in TermekLista" :key="termek.Id">
+                <td>{{ termek.Id }}</td>
+                <td>{{ termek.Cikkszam }}</td>
+                <td>{{ termek.Termeknev }}</td>
+                <td>{{ termek.Leiras }}</td>
+                <td>{{ termek.Ar }}</td>
+                <td>{{ termek.CreateAt }}</td>
+                <td style="white-space:nowrap">
+                    <!-- Szerkesztés és törlés gombok -->
+                    <router-link :to="`/edit?id=${termek.Id}`" class="btn btn-primary btn-sm">Szerkesztés</router-link>
+                    <router-link :to="`/delete?id=${termek.Id}`" class="btn btn-danger btn-sm">Törlés</router-link>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
